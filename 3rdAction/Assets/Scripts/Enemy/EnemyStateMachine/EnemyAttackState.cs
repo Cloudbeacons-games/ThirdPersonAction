@@ -5,16 +5,18 @@ public class EnemyAttackState : EnemyBaseState
 {
     readonly NavMeshAgent agent;
     readonly Transform player;
-    public EnemyAttackState(EnemyBrain enemy, Animator animator, NavMeshAgent agent, Transform player) : base(enemy, animator)
+    protected readonly EnemyBaseWeapon weapon;
+    public EnemyAttackState(EnemyBrain enemy, Animator animator, NavMeshAgent agent, Transform player, EnemyBaseWeapon weapon) : base(enemy, animator)
     {
         this.agent = agent;
         this.player = player;
+        this.weapon = weapon;
     }
 
     public override void OnEnter()
     {
         Debug.Log("Attack");
-        animator.CrossFade(AttackHash,crossFadeDuration);
+        animator.CrossFade(AttackHash,0f);
     }
 
     public override void Update()
@@ -24,5 +26,11 @@ public class EnemyAttackState : EnemyBaseState
             agent.SetDestination(player.position);
         }
         enemy.Attack();
+    }
+
+    public override void OnExit()
+    {
+        animator.StopPlayback();
+        weapon.DisableCollider();
     }
 }

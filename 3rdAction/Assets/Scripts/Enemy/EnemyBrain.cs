@@ -10,14 +10,16 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField]PlayerDetector playerDetector;
 
+
     StateMachine stateMachine;
 
     EnemyLifeManager lifeManager;
 
     CountdownTimer attackTimer;
     [SerializeField] float timeBetweenAttacks = 1f;
+    EnemyBaseWeapon weapon;
 
-    private bool hitByAttack = false;
+    [SerializeField] private bool hitByAttack = false;
     
 
     public float wanderRadius;
@@ -26,12 +28,13 @@ public class EnemyBrain : MonoBehaviour
         EnemyManager.RegisterEnemy(this.gameObject);
         lifeManager = GetComponent<EnemyLifeManager>();
         attackTimer = new CountdownTimer(timeBetweenAttacks);
+        weapon = GetComponent<EnemyBaseWeapon>();
 
         stateMachine = new StateMachine();
 
         EnemyWanderState wanderState = new EnemyWanderState(this, animator, agent, wanderRadius);
         EnemyChaseState chaseState = new EnemyChaseState(this, animator, agent, playerDetector.player);
-        EnemyAttackState attackState = new EnemyAttackState(this, animator, agent, playerDetector.player);
+        EnemyAttackState attackState = new EnemyAttackState(this, animator, agent, playerDetector.player, weapon);
         EnemyHitState hitState = new EnemyHitState(this, animator);
 
         At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));

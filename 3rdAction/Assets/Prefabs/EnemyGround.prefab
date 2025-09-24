@@ -100,6 +100,7 @@ MonoBehaviour:
   animator: {fileID: 3605045695041608712}
   playerDetector: {fileID: 2651316097143423583}
   timeBetweenAttacks: 3
+  hitByAttack: 0
   wanderRadius: 20
 --- !u!114 &9207299875269443743
 MonoBehaviour:
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2fddf273bbbf949aa09863222ebff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 400
+  Hp: 1000
 --- !u!195 &4185151714623401700
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -221,6 +222,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a095f798aba8f2946b3a23de742b2fb8, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Sword_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a095f798aba8f2946b3a23de742b2fb8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

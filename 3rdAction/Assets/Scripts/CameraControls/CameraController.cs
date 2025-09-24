@@ -174,7 +174,7 @@ public class CameraController : MonoBehaviour
     {
         RaycastHit hit;
         Physics.Raycast(cameraTransform.position, (enemy.position - cameraTransform.position), out hit,100f, ~ignoreLayer);
-        return hit.transform == enemy||hit.transform.tag == "Enemy";
+        return hit.transform == enemy||hit.transform.gameObject.layer == enemy.transform.gameObject.layer;
     }
 
     private void RotateCamera(float horizontalInput, float verticalInput)

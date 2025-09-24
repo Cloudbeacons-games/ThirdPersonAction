@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
         At(groundCombo1Attack, slidsingState, new FuncPredicate(() => !isAttacking && playerMover.IsGrounded() && IsGroundTooSteep()));
         At(groundCombo1Attack, fallingState, new FuncPredicate(() => !isAttacking && !playerMover.IsGrounded()));
 
-        At(hitState, locomotionState, new FuncPredicate(() =>!isBeingHit&& playerMover.IsGrounded() && !IsGroundTooSteep()));
-        At(hitState, fallingState, new FuncPredicate(() =>!isBeingHit&& !playerMover.IsGrounded()));
-        At(hitState, slidsingState, new FuncPredicate(() =>!isBeingHit&& playerMover.IsGrounded() && IsGroundTooSteep()));
+        At(hitState, locomotionState, new FuncPredicate(() =>!isBeingHit && playerMover.IsGrounded() && !IsGroundTooSteep()));
+        At(hitState, fallingState, new FuncPredicate(() =>!isBeingHit && !playerMover.IsGrounded()));
+        At(hitState, slidsingState, new FuncPredicate(() =>!isBeingHit && playerMover.IsGrounded() && IsGroundTooSteep()));
 
 
 
