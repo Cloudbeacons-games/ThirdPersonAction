@@ -508,6 +508,7 @@ MonoBehaviour:
   isCombo: 0
   cameraTransform: {fileID: 3521817640296885347}
   animator: {fileID: 8719113970238958674}
+  swordSwingClip: {fileID: 8300000, guid: 9d9c5b57abeec944ca5cd06800ec7560, type: 3}
 --- !u!114 &598148465011370445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,6 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordScript: {fileID: 3243727652363067825}
+  playerController: {fileID: 760741319922438284}
 --- !u!136 &267606911913346843
 CapsuleCollider:
   m_ObjectHideFlags: 0

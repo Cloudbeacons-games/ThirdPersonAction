@@ -11,6 +11,7 @@ public class GroundAttackStart : BaseAttackState
         player.isAttacking = true;
         isCombo = false;
         animator.CrossFade(GroundAttack1Hash, crossFadeDuration);
+        SoundFXManager.Instance.PlaySoundFXClip(player.swordSwingClip, player.transform, 1f);
     }
 
     public override void FixedUpdate()

@@ -7,8 +7,9 @@ using UnityEngine.AI;
 public class EnemyBrain : MonoBehaviour
 {
     [SerializeField]NavMeshAgent agent;
-    [SerializeField] Animator animator;
+    [SerializeField]Animator animator;
     [SerializeField]PlayerDetector playerDetector;
+    Rigidbody rb;
 
 
     StateMachine stateMachine;
@@ -29,6 +30,7 @@ public class EnemyBrain : MonoBehaviour
         lifeManager = GetComponent<EnemyLifeManager>();
         attackTimer = new CountdownTimer(timeBetweenAttacks);
         weapon = GetComponent<EnemyBaseWeapon>();
+        rb = GetComponent<Rigidbody>();
 
         stateMachine = new StateMachine();
 
@@ -60,13 +62,22 @@ public class EnemyBrain : MonoBehaviour
 
     private void Update()
     {
-        stateMachine.Update();
+        if(agent.enabled)
+            stateMachine.Update();
+        else if(rb.linearVelocity.y < 0)
+        {
+            ResumeAgent();
+        }
+            
         attackTimer.Tick();
+
+        
     }
 
     private void FixedUpdate()
     {
-        stateMachine.FixedUpdate();
+        if (agent.enabled)
+            stateMachine.FixedUpdate();
     }
 
     public void Attack()
@@ -85,7 +96,27 @@ public class EnemyBrain : MonoBehaviour
 
     public void StopHitStun()
     {
-        hitByAttack = false;
+        if(agent.enabled)
+            hitByAttack = false;
+    }
+
+    public void KnockUp()
+    {
+        agent.enabled = false;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.AddForce(Vector3.up*4,ForceMode.Impulse);
+
+        
+        
+    }
+
+    private void ResumeAgent()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        agent.enabled = true;
+        
     }
 
 

@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public event Action<Vector3> OnJump = delegate { };
     public event Action<Vector3> OnLand = delegate { };
 
+    public AudioClip swordSwingClip;
+
 
     #endregion
 
